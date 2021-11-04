@@ -7,7 +7,7 @@ app.use(express.json())
 const students = [`Adrian`, `Spencer`, `Norman`]
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/index.html'))
+    res.sendFile(path.join(__dirname, './index.html'))
 })
 
 
