@@ -11,8 +11,7 @@ var rollbar = new Rollbar({
 })
 
 // record a generic message and send it to Rollbar
-rollbar.log('Hello world!')
-
+// rollbar.log('Hello world!')
 
 
 app.use(express.json())
@@ -24,6 +23,7 @@ app.get('/', (req, res) => {
 })
 
 app.get(`/api/students`, (req, res) => {
+    rollbar.info('A user requested the list of students')
     res.status(200).send(students)
 })
 
@@ -38,10 +38,13 @@ app.post(`/api/students`, (req, res) => {
     try{
         if (index === -1 && name !== ``){
             students.push(name)
+            rollbar.info('Someone added a student.')
             res.status(200).send(students)
         } else if (name === ``) {
+            rollbar.error('Someone tried to enter a blank student')
             res.status(400).send(`must enter a student name`)
         } else {
+            rollbar.error('Someone tried to enter a duplicate student')
             res.status(400).send(`that student already exists`)
         }
     } catch (err) {
