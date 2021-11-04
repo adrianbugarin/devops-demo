@@ -10,7 +10,9 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './index.html'))
 })
 
-
+app.get(`/api/students`, (req, res) => {
+    res.status(200).send(students)
+})
 
 
 
