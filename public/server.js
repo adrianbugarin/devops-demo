@@ -1,6 +1,11 @@
 const express = require('express')
 const app = express()
 const path = require(`path`)
+const Rollbar = require('rollbar')
+
+
+// record a geric message and send it to Rollbar
+// rollbar.log("Hello world!");
 
 app.use(express.json())
 
