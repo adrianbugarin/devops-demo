@@ -57,6 +57,8 @@ app.delete(`/api/students/:index`, (req, res) => {
 
     students.splice(targetIndex, 1)
 
+    rollbar.info('Someone added a student')
+
     res.status(200).send(students)
 })
 
