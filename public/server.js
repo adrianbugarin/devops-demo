@@ -15,6 +15,35 @@ app.get(`/api/students`, (req, res) => {
 })
 
 
+app.post(`/api/students`, (req, res) => {
+    let {name} = req.body
+
+    const index = students.findIndex(student => {
+        return student === name
+    })
+
+    try{
+        if (index === -1 && name !== ``){
+            students.push(name)
+            res.status(200).send(students)
+        } else if (name === ``) {
+            res.status(400).send(`must enter a student name`)
+        } else {
+            res.status(400).send(`that student already exists`)
+        }
+    } catch (err) {
+        console.log(err)
+    }
+})
+
+app.delete(`/api/students`, (req, res) => {
+    const targetIndex = +req.params.index
+
+    students.splice(targetIndex, 1)
+
+    res.status(200).send(students)
+})
+
 
 const port = process.env.PORT || 5050
 
