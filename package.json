@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "express": "^4.17.1",
+        "node": "^17.0.1",
         "rollbar": "^2.24.0"
     }
 }
